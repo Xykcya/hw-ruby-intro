@@ -42,19 +42,60 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, #{name}"
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  vowels = ["a","e", "i", "o", "u"]
+  result = true
+  s = s.downcase
+  if !s.empty? && s.match(/\p{Alnum}/)
+    vowels.each {|letter| result = false if s[0] == letter }
+  
+  else 
+    result = false
+  end
+  
 end
-
-def binary_multiple_of_4? s
-  # YOUR CODE HERE
+=begin
+takes a string and returns true if the string represents a binary number that is a multiple of 4. NOTE: be sure it returns false if the string is not a valid binary number!
+=end
+def binary_multiple_of_4?
+  return false unless s =~ /^[01]+$/
+    s.to_i(2) % 4 == 0 
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  
+    def initialize isbn, price
+      
+      raise ArgumentErrorif if price<=0
+	    raise ArgumentErrorif if isbn.empty?
+      @isbn = isbn
+      @price = price
+
+    end
+
+  def price=(price)
+      @price=price
+  end
+  
+  def price
+    @price
+  end
+  
+  def isbn=(isbn)
+      @isbn = isbn
+  end
+  
+  def isbn
+    @isbn
+  end
+
+  def price_as_string
+    "$#{sprintf("%.2f", @price)}"
+  end
+
 end
